@@ -1,0 +1,104 @@
+{
+    "PDBFileDatabaseLocation": "~lihongb/DATABASE/DBInfo/",
+    "convertedAlignResult": "./AlignmentOutput/converted/",
+    "fastaFileLocation": "./Proteins/",
+    "alignment": [
+        {
+            "blast": [
+                {
+                    "alignmentToolLocation": "~lihongb/Tools/BLAST2_2_21/bin/"
+                },
+                {
+                    "intermediateAlignResult": "./AlignmentOutput/intermediate/"
+                },
+                {
+                    "nrc": {
+                        "databaseLocation": "~lihongb/DATABASE/nr/",
+                        "parameterSetting": {
+                            "-o": "query.blaNR",
+                            "-C": "query.chk",
+                            "-d": "nr",
+                            "-v": 5000,
+                            "-b": 5000,
+                            "-j": 3,
+                            "-h": 0.001,
+                            "-i": "_.fasta"
+                        }
+                    }
+                },
+                {
+                    "nrr": {
+                        "databaseLocation": "~lihongb/DATABASE/nr/",
+                        "parameterSetting": {
+                            "-o": "query.blaNR",
+                            "-R": "query.chk",
+                            "-d": "nr",
+                            "-v": 5000,
+                            "-b": 5000,
+                            "-j": 1,
+                            "-h": 0.001,
+                            "-i": "_.fasta"
+                        }
+                    }
+                },
+                {
+                    "pdb": {
+                        "databaseLocation": "~lihongb/DATABASE/LocalDB/",
+                        "parameterSetting": {
+                            "-o": "query.blaPDB",
+                            "-R": "query.chk",
+                            "-Q": "query.profile",
+                            "-d": "MUFOLD_04302014_AA",
+                            "-e": 11000,
+                            "-i": "_.fasta"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "hhsearch64": {
+                "databaseLocation": "~lihongb/DATABASE/HHMDB/",
+                "-a3m": "query.a3m",
+                "HHMakeParameterSetting": {
+                    "-i": "query.a3m",
+                    "-name": "query",
+                    "-o": "query.hhm"
+                },
+                "HHSearchNRParameterSetting": {
+                    "-i": "query.hhm",
+                    "-d": "cal.hhm",
+                    "-o": "query.hhrNR",
+                    "additional": "-cal"
+                },
+                "HHSearchParameterSetting": {
+                    "-i": "query.hhm",
+                    "-d": "MUFOLD_01092013_HHM.hhm",
+                    "-o": "query.hhr",
+                    "-b": 50,
+                    "additional": "-glob"
+                }
+            }
+        },
+        {
+            "cnfsearch": {
+                "databaseLocation": "~lihongb/DATABASE/HHMDB/",
+                "buildFeaturesParameterSetting": {
+                    "-i": "_.fasta",
+                    "-c": 2,
+                    "-o": "_.tgt"
+                },
+                "CNFSearchParameterSetting": {
+                    "-a": 2,
+                    "-q": "_rootName",
+                    "-p": 0.001,
+                    "-g": "_path_tgt_locates",
+                    "-o": "_.rank",
+                    "-d": "TPL_BC100/",
+                    "-l": "bc100_list ",
+                    "-n": 100
+                }
+            }
+        }
+    ]
+}
